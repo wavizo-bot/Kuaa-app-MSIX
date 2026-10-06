@@ -1,0 +1,27 @@
+============================================================
+LOG DO REPOSITORIO Kuaa-app-MSIX (o que mudou neste pacote)
+============================================================
+ETAPA 1 - CONSOLIDACAO EM C:\APPS\Kuaa + REVISAO COMPLETA  [FEITO - 06/10/2026]
+Agente: Muse Spark (opencode).
+PEDIDO: levar tudo de C:\APPS\Kuaa-MSIX para C:\APPS\Kuaa (pasta msix-app),
+facilitar atualizacoes, evitar redundancias e publicar o essencial no GitHub.
+O QUE DEU CERTO:
+- Move preservou .git, remotos e historico (1 commit inicial intacto).
+- Espelho web 100% igual ao dist atual (conferido arquivo a arquivo).
+- sync-msix.ps1 criado na raiz do Kuaa: espelha dist->msix, limpa bundles
+  orfaos e REGENERA o Mapping.txt com caminhos explicitos (o MakeAppx nao
+  aceita os curingas index-*.js que estavam no Mapping antigo).
+- build-msix.ps1 sem caminho fixo ($PSScriptRoot) e com Push-Location antes
+  do MakeAppx (os relativos do Mapping resolvem a partir do diretorio do
+  pacote em qualquer maquina).
+- politica-privacidade.html virou neutra Android+Windows direto no fonte
+  (kuaa-app), com rebuild + sync (fonte unica, sem divergencia).
+- Removido __manus__/debug-collector.js (25 KB mortos, sem referencia no
+  index compilado); sync nunca mais o copia; .gitkeep fora do Mapping.
+O QUE DEU ERRADO (e foi resolvido):
+- Editei a politica DENTRO do msix-app e o sync apagou tudo (o arquivo e
+  espelho do dist). Licao: arquivo-espelho nunca se edita a mao — corrigi
+  no fonte e religuei via rebuild+sync. Registrado no manual como regra.
+PRESUNCOES: nenhuma alteracao de versao de loja nesta etapa (manifesto segue
+1.3.7.0); MakeAppx/signtool NAO existem nesta maquina, entao o .msix final
+ainda nao foi gerado aqui — gerar numa maquina com SDK do Windows.

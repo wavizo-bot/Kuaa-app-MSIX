@@ -1,9 +1,9 @@
 [Files]
-; Host executable
-"KuaaApp.Host.exe"        "KuaaApp.Host.exe"
-"KuaaApp.Host.dll"        "KuaaApp.Host.dll"
+; Host executable (gerado pelo dotnet publish no build-msix.ps1)
+"KuaaApp.Host.exe" "KuaaApp.Host.exe"
+"KuaaApp.Host.dll" "KuaaApp.Host.dll"
 "KuaaApp.Host.runtimeconfig.json" "KuaaApp.Host.runtimeconfig.json"
-"KuaaApp.Host.deps.json"  "KuaaApp.Host.deps.json"
+"KuaaApp.Host.deps.json" "KuaaApp.Host.deps.json"
 
 ; WebView2 runtime
 "Microsoft.Web.WebView2.Core.dll" "Microsoft.Web.WebView2.Core.dll"
@@ -14,55 +14,50 @@
 "Microsoft.WindowsAppRuntime.dll" "Microsoft.WindowsAppRuntime.dll"
 "Microsoft.WindowsAppSDK.dll" "Microsoft.WindowsAppSDK.dll"
 
-; Web assets (root)
-"index.html"              "index.html"
-"manifest.webmanifest"    "manifest.webmanifest"
-"service-worker.js"       "service-worker.js"
-"politica-privacidade.html" "politica-privacidade.html"
-"_redirects"              "_redirects"
-"initial-student-package.json" "initial-student-package.json"
-
-; Assets (icons)
-"assets\Square44x44Logo.png"      "assets\Square44x44Logo.png"
-"assets\Square150x150Logo.png"    "assets\Square150x150Logo.png"
-"assets\Wide310x150Logo.png"      "assets\Wide310x150Logo.png"
-"assets\Square310x310Logo.png"    "assets\Square310x310Logo.png"
-"assets\StoreLogo.png"            "assets\StoreLogo.png"
-
-; Icons
-"icons\kuaa-192.png"          "icons\kuaa-192.png"
-"icons\kuaa-512.png"          "icons\kuaa-512.png"
-"icons\kuaa-maskable-192.png" "icons\kuaa-maskable-192.png"
-"icons\kuaa-maskable-512.png" "icons\kuaa-maskable-512.png"
-"icons\icon-192.png"          "icons\icon-192.png"
-"icons\icon-512.png"          "icons\icon-512.png"
-"icons\icon-maskable-192.png" "icons\icon-maskable-192.png"
-"icons\icon-maskable-512.png" "icons\icon-maskable-512.png"
+; Web assets (espelho do dist, gerado pelo sync-msix.ps1)
+"_redirects" "_redirects"
+"assets\index-0liUeYgK.js" "assets\index-0liUeYgK.js"
+"assets\index-BEmvWnq6.css" "assets\index-BEmvWnq6.css"
+"assets\index-D7fHD_tX.js" "assets\index-D7fHD_tX.js"
+"assets\web-D1YwaAgn.js" "assets\web-D1YwaAgn.js"
+"caderno-favicon-v2.png" "caderno-favicon-v2.png"
+"favicon.ico" "favicon.ico"
+"favicon.png" "favicon.png"
 "icons\caderno-logo-192-v2.png" "icons\caderno-logo-192-v2.png"
 "icons\caderno-logo-512-v2.png" "icons\caderno-logo-512-v2.png"
 "icons\caderno-logo-maskable-512-v2.png" "icons\caderno-logo-maskable-512-v2.png"
-"icons\favicon.png"           "icons\favicon.png"
-"icons\favicon.ico"           "icons\favicon.ico"
-"icons\caderno-favicon-v2.png" "icons\caderno-favicon-v2.png"
-
-; Medals
-"medals\simulado-bronze.png"  "medals\simulado-bronze.png"
-"medals\simulado-prata.png"   "medals\simulado-prata.png"
-"medals\simulado-ouro.png"    "medals\simulado-ouro.png"
-"medals\maratona-bronze.png"  "medals\maratona-bronze.png"
-"medals\maratona-prata.png"   "medals\maratona-prata.png"
-"medals\maratona-ouro.png"    "medals\maratona-ouro.png"
-"medals\habito-bronze.png"    "medals\habito-bronze.png"
-"medals\habito-prata.png"     "medals\habito-prata.png"
-"medals\habito-ouro.png"      "medals\habito-ouro.png"
+"icons\icon-192.png" "icons\icon-192.png"
+"icons\icon-512.png" "icons\icon-512.png"
+"icons\icon-maskable-512.png" "icons\icon-maskable-512.png"
+"icons\kuaa-192.png" "icons\kuaa-192.png"
+"icons\kuaa-512.png" "icons\kuaa-512.png"
+"icons\kuaa-maskable-192.png" "icons\kuaa-maskable-192.png"
+"icons\kuaa-maskable-512.png" "icons\kuaa-maskable-512.png"
+"index.html" "index.html"
+"initial-student-package.json" "initial-student-package.json"
+"manifest.webmanifest" "manifest.webmanifest"
 "medals\combinacao-bronze.png" "medals\combinacao-bronze.png"
+"medals\combinacao-ouro.png" "medals\combinacao-ouro.png"
 "medals\combinacao-prata.png" "medals\combinacao-prata.png"
-"medals\combinacao-ouro.png"  "medals\combinacao-ouro.png"
+"medals\habito-bronze.png" "medals\habito-bronze.png"
+"medals\habito-ouro.png" "medals\habito-ouro.png"
+"medals\habito-prata.png" "medals\habito-prata.png"
+"medals\maratona-bronze.png" "medals\maratona-bronze.png"
+"medals\maratona-ouro.png" "medals\maratona-ouro.png"
+"medals\maratona-prata.png" "medals\maratona-prata.png"
+"medals\simulado-bronze.png" "medals\simulado-bronze.png"
+"medals\simulado-ouro.png" "medals\simulado-ouro.png"
+"medals\simulado-prata.png" "medals\simulado-prata.png"
+"politica-privacidade.html" "politica-privacidade.html"
+"service-worker.js" "service-worker.js"
 
-; JS/CSS assets (hashed filenames - will be copied from build output)
-"assets\index-*.js"           "assets\index-*.js"
-"assets\index-*.css"          "assets\index-*.css"
-"assets\web-*.js"             "assets\web-*.js"
+; Tiles do pacote
+
+"assets\Square150x150Logo.png" "assets\Square150x150Logo.png"
+"assets\Square310x310Logo.png" "assets\Square310x310Logo.png"
+"assets\Square44x44Logo.png" "assets\Square44x44Logo.png"
+"assets\StoreLogo.png" "assets\StoreLogo.png"
+"assets\Wide310x150Logo.png" "assets\Wide310x150Logo.png"
 
 ; AppxManifest
-"AppxManifest.xml"            "AppxManifest.xml"
+"AppxManifest.xml" "AppxManifest.xml"

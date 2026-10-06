@@ -15,7 +15,7 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-$ProjectRoot = "C:\APPS\Kuaa-MSIX\Kuaa-app"
+$ProjectRoot = $PSScriptRoot
 $HostProject = "$ProjectRoot\Host\KuaaApp.Host.csproj"
 $OutputDir = "$ProjectRoot\PackageOutput"
 $PackageDir = "$OutputDir\Package"
@@ -97,7 +97,14 @@ if (-not (Test-Path $MakeAppx)) {
     throw "MakeAppx.exe not found. Please install Windows 10 SDK."
 }
 
-& $MakeAppx pack /d "$PackageDir" /p "$OutputDir\$PackageName" /l /o /f $MappingFile
+# Os caminhos do Mapping.txt sao relativos: empacota a partir de dentro do
+# diretorio do pacote para que resolvam corretamente em qualquer maquina.
+Push-Location $PackageDir
+try {
+    & $MakeAppx pack /d "$PackageDir" /p "$OutputDir\$PackageName" /l /o /f $MappingFile
+} finally {
+    Pop-Location
+}
 
 if (-not (Test-Path "$OutputDir\$PackageName")) {
     throw "Package creation failed"
