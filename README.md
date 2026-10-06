@@ -81,7 +81,7 @@ Kuaa-app/
 
 1. Go to [Partner Center](https://partner.microsoft.com/dashboard)
 2. Create a new app submission
-3. Reserve the name "kuaa Estudante" (or use existing)
+3. Reserve the name "Kuaa" (must match Package/Properties/DisplayName)
 4. Upload the generated `.msix` file
 5. Fill in the store listing details
 6. Submit for certification

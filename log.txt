@@ -48,3 +48,10 @@ O QUE QUEBROU NO CAMINHO (bugs reais do esqueleto inicial, todos corrigidos):
 7. Glob `..\*.txt` do csproj arrastava log/manual/Mapping p/ o publish ->
    removido (nao entram no pacote de qualquer forma, mas sujavam a pasta).
 PRESUNCAO: pacote NAO assinado (Partner Center assina na submissao).
+============================================================
+ETAPA 3 - DISPLAYNAME CORRIGIDO P/ O NOME RESERVADO  [FEITO - 06/10/2026]
+A loja rejeitou o pacote: Properties/DisplayName "kuaa Estudante" nao era o
+nome reservado. Nome reservado confirmado com o usuario: "Kuaa". Trocado nos
+2 DisplayName do manifesto (Properties + VisualElements) e na instrucao do
+README. Versao mantida 1.3.7.0 (submissao anterior falhou, nada publicado).
+Pacote regenerado e validado via unpack (DisplayName=Kuaa nos 2 pontos).
