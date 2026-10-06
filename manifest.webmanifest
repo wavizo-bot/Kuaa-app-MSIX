@@ -1,0 +1,17 @@
+{
+  "name": "kuaa Estudante",
+  "short_name": "kuaa Estudante",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#F8F5ED",
+  "theme_color": "#17324D",
+  "description": "kuaa — estude provas e importe pacotes de questões mesmo sem conexão após o primeiro carregamento.",
+  "icons": [
+    { "src": "/icons/kuaa-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/kuaa-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/kuaa-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icons/kuaa-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

@@ -1,0 +1,31 @@
+# Build outputs
+PackageOutput/
+*.msix
+*.appx
+*.appxbundle
+
+# .NET
+bin/
+obj/
+*.user
+*.suo
+
+# IDE
+.vs/
+.vscode/
+*.swp
+*.swo
+
+# OS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Certificates
+*.pfx
+*.cer
+*.p12
+
+# Logs
+*.log
+build_out.log

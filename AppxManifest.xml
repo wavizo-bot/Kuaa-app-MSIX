@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+         xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+         xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
+         xmlns:uap4="http://schemas.microsoft.com/appx/manifest/uap/windows10/4"
+         xmlns:uap5="http://schemas.microsoft.com/appx/manifest/uap/windows10/5"
+         xmlns:uap6="http://schemas.microsoft.com/appx/manifest/uap/windows10/6"
+         xmlns:uap7="http://schemas.microsoft.com/appx/manifest/uap/windows10/7"
+         xmlns:uap8="http://schemas.microsoft.com/appx/manifest/uap/windows10/8"
+         xmlns:uap9="http://schemas.microsoft.com/appx/manifest/uap/windows10/9"
+         xmlns:uap10="http://schemas.microsoft.com/appx/manifest/uap/windows10/10"
+         xmlns:uap11="http://schemas.microsoft.com/appx/manifest/uap/windows10/11"
+         xmlns:uap12="http://schemas.microsoft.com/appx/manifest/uap/windows10/12"
+         xmlns:uap13="http://schemas.microsoft.com/appx/manifest/uap/windows10/13"
+         xmlns:uap14="http://schemas.microsoft.com/appx/manifest/uap/windows10/14"
+         xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+         xmlns:desktop4="http://schemas.microsoft.com/appx/manifest/desktop/windows10/4"
+         IgnorableNamespaces="uap3 uap4 uap5 uap6 uap7 uap8 uap9 uap10 uap11 uap12 uap13 uap14 rescap desktop4">
+  <Identity Name="wavizo.Kuaa"
+            Publisher="CN=57BB464E-553F-45B6-A4ED-B253157408EB"
+            Version="1.3.7.0" />
+  <Properties>
+    <DisplayName>kuaa Estudante</DisplayName>
+    <PublisherDisplayName>wavizo</PublisherDisplayName>
+    <Logo>assets\StoreLogo.png</Logo>
+  </Properties>
+  <Resources>
+    <Resource Language="pt-BR" />
+  </Resources>
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.17763.0" MaxVersionTested="10.0.22621.0" />
+  </Dependencies>
+  <Capabilities>
+    <Capability Name="internetClient" />
+    <Capability Name="internetClientServer" />
+    <Capability Name="privateNetworkClientServer" />
+    <rescap:Capability Name="runFullTrust" />
+  </Capabilities>
+  <Applications>
+    <Application Id="App" Executable="KuaaApp.Host.exe" EntryPoint="Windows.FullTrustApplication">
+      <uap:VisualElements DisplayName="kuaa Estudante"
+                          Square150x150Logo="assets\Square150x150Logo.png"
+                          Square44x44Logo="assets\Square44x44Logo.png"
+                          Wide310x150Logo="assets\Wide310x150Logo.png"
+                          Square310x310Logo="assets\Square310x310Logo.png"
+                          BackgroundColor="#17324D"
+                          Description="kuaa — estude provas e importe pacotes de questões mesmo sem conexão após o primeiro carregamento.">
+        <uap:DefaultTile Wide310x150Logo="assets\Wide310x150Logo.png"
+                         Square310x310Logo="assets\Square310x310Logo.png"
+                         Square71x71Logo="assets\Square44x44Logo.png" />
+        <uap:SplashScreen Image="assets\Square150x150Logo.png" BackgroundColor="#17324D" />
+        <uap:InitialRotationPreference>
+          <uap:Rotation Preference="portrait" />
+          <uap:Rotation Preference="landscape" />
+          <uap:Rotation Preference="portraitFlipped" />
+          <uap:Rotation Preference="landscapeFlipped" />
+        </uap:InitialRotationPreference>
+      </uap:VisualElements>
+      <uap:ApplicationContentUriRules>
+        <uap:Rule Match="ms-appx-web:///" Type="include" WindowsRuntimeAccess="all" />
+      </uap:ApplicationContentUriRules>
+    </Application>
+  </Applications>
+</Package>
