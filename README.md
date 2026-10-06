@@ -99,7 +99,7 @@ Kuaa-app/
 ## Technical Details
 
 - **Framework**: React 19 + Vite 7 + TypeScript
-- **Host**: .NET 8 + WebView2 + Windows App SDK 1.6
+- **Host**: .NET 8 + WebView2 1.0.3124.44 (WinForms, sem WindowsAppSDK — o Host usa só WebView2)
 - **Capabilities**: internetClient, internetClientServer, privateNetworkClientServer, runFullTrust
 - **Target**: Windows 10 1809+ (10.0.17763.0)
 - **Architectures**: x86, x64, arm64

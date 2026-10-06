@@ -25,3 +25,26 @@ O QUE DEU ERRADO (e foi resolvido):
 PRESUNCOES: nenhuma alteracao de versao de loja nesta etapa (manifesto segue
 1.3.7.0); MakeAppx/signtool NAO existem nesta maquina, entao o .msix final
 ainda nao foi gerado aqui — gerar numa maquina com SDK do Windows.
+============================================================
+ETAPA 2 - PRIMEIROS .MSIX GERADOS NESTA MAQUINA  [FEITO - 06/10/2026]
+SDK do Windows (10.0.28000.0) e .NET 8 existem aqui — o "pendente" virou feito.
+PACOTE: PackageOutput/wavizo.Kuaa_1.3.7.0_x64.msix (4.591.358 bytes), validado
+via unpack (48 arquivos: Host exe+dlls WebView2, web atual, manifesto 1.3.7.0,
+zero lixo como log/manual/Mapping/__manus__).
+O QUE QUEBROU NO CAMINHO (bugs reais do esqueleto inicial, todos corrigidos):
+1. Versoes NuGet INVENTADAS no csproj (WebView2 1.0.3065.44 e AppSDK 1.6.x
+   retornam 404 no nuget.org) -> PINADAS nas reais 1.0.3124.44 e 1.7.250310001.
+2. WindowsAppSDK REMOVIDO do Host: o pacote dele forca o WebView2 ao modo
+   projecao CsWinRT (sem WinForms -> CS0234). O Host usa zero API do AppSDK;
+   sem ele o publish emagrece ~100 MB+ e o Mapping perdeu 2 DLLs.
+3. MakeAppx nao aceita /d + /f juntos -> pack usa so /f (com Push-Location).
+4. Parser do Mapping nao aceita comentarios nem linhas em branco -> sync agora
+   gera so [Files] + pares explicitos (sem ";", sem curingas).
+5. Favicons da raiz (caderno-favicon, favicon.png/ico) faltavam na copia do
+   build -> adicionados a $webAssets; + trava que aborta se o Mapping citar
+   arquivo ausente (foi ela que pegou o Mapping desatualizado do admin).
+6. Atributo Wide310x150Logo/Square310x310Logo em uap:VisualElements e invalido
+   no schema (C00CE015) -> ficam SO no uap:DefaultTile (nos 2 manifestos).
+7. Glob `..\*.txt` do csproj arrastava log/manual/Mapping p/ o publish ->
+   removido (nao entram no pacote de qualquer forma, mas sujavam a pasta).
+PRESUNCAO: pacote NAO assinado (Partner Center assina na submissao).

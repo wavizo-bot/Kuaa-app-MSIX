@@ -50,10 +50,12 @@ Write-Host "Host application built successfully" -ForegroundColor Green
 # Step 2: Copy web assets to package directory
 Write-Host "`n[2/4] Copying web assets..." -ForegroundColor Yellow
 
-# Copy all files from the root (web assets)
+# Copy all files from the root (web assets — mesma lista do espelho do sync,
+# senao o Mapping referencia arquivos que nao estao no diretorio do pacote)
 $webAssets = @(
-    "index.html", "manifest.webmanifest", "service-worker.js", 
-    "politica-privacidade.html", "_redirects", "initial-student-package.json"
+    "index.html", "manifest.webmanifest", "service-worker.js",
+    "politica-privacidade.html", "_redirects", "initial-student-package.json",
+    "caderno-favicon-v2.png", "favicon.png", "favicon.ico"
 )
 
 foreach ($asset in $webAssets) {
@@ -97,11 +99,19 @@ if (-not (Test-Path $MakeAppx)) {
     throw "MakeAppx.exe not found. Please install Windows 10 SDK."
 }
 
-# Os caminhos do Mapping.txt sao relativos: empacota a partir de dentro do
-# diretorio do pacote para que resolvam corretamente em qualquer maquina.
+# Trava: todo arquivo do Mapping precisa existir no diretorio do pacote
+# (se o sync-msix.ps1 rodou, esta lista esta completa — nao editar a mao).
+$mappingSources = Get-Content $MappingFile | Where-Object { $_ -match '^\s*"' } | ForEach-Object {
+    ($_ -split '"')[1]
+} | Where-Object { $_ -ne "AppxManifest.xml" }
+$missingSources = @($mappingSources | Where-Object { -not (Test-Path (Join-Path $PackageDir $_)) })
+if ($missingSources.Count) { throw "Arquivos do Mapping ausentes no pacote: $($missingSources -join ', ')" }
+
+# O MakeAppx NAO aceita /d e /f juntos: usamos so o Mapping (caminhos relativos
+# resolvidos a partir do diretorio do pacote).
 Push-Location $PackageDir
 try {
-    & $MakeAppx pack /d "$PackageDir" /p "$OutputDir\$PackageName" /l /o /f $MappingFile
+    & $MakeAppx pack /p "$OutputDir\$PackageName" /l /o /f $MappingFile
 } finally {
     Pop-Location
 }

@@ -38,11 +38,9 @@
   </Capabilities>
   <Applications>
     <Application Id="App" Executable="KuaaApp.Host.exe" EntryPoint="Windows.FullTrustApplication">
-      <uap:VisualElements DisplayName="kuaa Estudante"
+        <uap:VisualElements DisplayName="kuaa Estudante"
                           Square150x150Logo="assets\Square150x150Logo.png"
                           Square44x44Logo="assets\Square44x44Logo.png"
-                          Wide310x150Logo="assets\Wide310x150Logo.png"
-                          Square310x310Logo="assets\Square310x310Logo.png"
                           BackgroundColor="#17324D"
                           Description="kuaa — estude provas e importe pacotes de questões mesmo sem conexão após o primeiro carregamento.">
         <uap:DefaultTile Wide310x150Logo="assets\Wide310x150Logo.png"
