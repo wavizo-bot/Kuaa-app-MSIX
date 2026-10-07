@@ -65,12 +65,15 @@ foreach ($asset in $webAssets) {
     }
 }
 
-# Copy directories
+# Copy directories (conteudo p/ dentro do destino ja existente: copiar a pasta
+# em si sobre um destino existente aninharia assets\assets — ja aconteceu)
 $dirs = @("assets", "icons", "medals")
 foreach ($dir in $dirs) {
     $src = "$ProjectRoot\$dir"
     if (Test-Path $src) {
-        Copy-Item $src -Destination "$PackageDir\$dir" -Recurse -Force
+        $dstDir = "$PackageDir\$dir"
+        if (-not (Test-Path $dstDir)) { New-Item -ItemType Directory -Path $dstDir -Force | Out-Null }
+        Copy-Item "$src\*" -Destination $dstDir -Recurse -Force
     }
 }
 
@@ -99,9 +102,34 @@ if (-not (Test-Path $MakeAppx)) {
     throw "MakeAppx.exe not found. Please install Windows 10 SDK."
 }
 
+function Write-Utf8NoBom([string]$Path, [string]$Text) {
+    $enc = New-Object System.Text.UTF8Encoding($false)
+    [System.IO.File]::WriteAllText($Path, $Text, $enc)
+}
+
+# Fecha a lista do pacote: tudo que o publish + copia colocaram no diretorio e
+# ainda nao esta no Mapping entra automaticamente (closure self-contained
+# completa — sem isso o apphost nao acha hostfxr/hostpolicy e pede runtime).
+# Gera Mapping.gen.txt no PackageOutput (o Mapping.txt do repo fica limpo).
+$MappingGen = "$OutputDir\Mapping.gen.txt"
+$mappedSources = Get-Content $MappingFile | Where-Object { $_ -match '^\s*"' } | ForEach-Object {
+    ((($_ -split '"')[1]).Replace("/", "\")).ToLower()
+}
+$extraSources = Get-ChildItem -Recurse -File $PackageDir | ForEach-Object {
+    $_.FullName.Substring($PackageDir.Length + 1)
+} | Where-Object {
+    $lower = $_.ToLower()
+    ($mappedSources -notcontains $lower) -and
+    ($lower -notmatch '\.pdb$') -and ($lower -notmatch '\.log$') -and
+    ($lower -notmatch '^mapping.*\.txt$')
+} | Sort-Object
+$repoLines = @(Get-Content $MappingFile)
+$extraLines = foreach ($extra in $extraSources) { '"{0}" "{0}"' -f $extra }
+Write-Utf8NoBom $MappingGen (($repoLines + $extraLines) -join "`r`n")
+
 # Trava: todo arquivo do Mapping precisa existir no diretorio do pacote
 # (se o sync-msix.ps1 rodou, esta lista esta completa — nao editar a mao).
-$mappingSources = Get-Content $MappingFile | Where-Object { $_ -match '^\s*"' } | ForEach-Object {
+$mappingSources = Get-Content $MappingGen | Where-Object { $_ -match '^\s*"' } | ForEach-Object {
     ($_ -split '"')[1]
 } | Where-Object { $_ -ne "AppxManifest.xml" }
 $missingSources = @($mappingSources | Where-Object { -not (Test-Path (Join-Path $PackageDir $_)) })
@@ -111,7 +139,7 @@ if ($missingSources.Count) { throw "Arquivos do Mapping ausentes no pacote: $($m
 # resolvidos a partir do diretorio do pacote).
 Push-Location $PackageDir
 try {
-    & $MakeAppx pack /p "$OutputDir\$PackageName" /l /o /f $MappingFile
+    & $MakeAppx pack /p "$OutputDir\$PackageName" /l /o /f $MappingGen
 } finally {
     Pop-Location
 }

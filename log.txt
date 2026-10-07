@@ -55,3 +55,29 @@ nome reservado. Nome reservado confirmado com o usuario: "Kuaa". Trocado nos
 2 DisplayName do manifesto (Properties + VisualElements) e na instrucao do
 README. Versao mantida 1.3.7.0 (submissao anterior falhou, nada publicado).
 Pacote regenerado e validado via unpack (DisplayName=Kuaa nos 2 pontos).
+============================================================
+ETAPA 4 - CORRIGIDO O "INSTALE O .NET DESKTOP RUNTIME"  [FEITO - 07/10/2026]
+SINTOMA (usuario, com print): app da loja abre dialogo "You must install .NET
+Desktop Runtime", mesmo com .NET 11 SDK instalado.
+CAUSA RAIZ (provada pelo Event Viewer local, evento 1023 do .NET Runtime): o
+Mapping listava so 7 arquivos do Host (exe/dll/runtimeconfig/deps + 3 do
+WebView2) e o pacote saia SEM hostfxr/hostpolicy/coreclr — ou seja, o publish
+self-contained ia todo pro PackageDir, mas o .msix levava so uma fracao.
+Sem hostfxr local, o apphost caia no runtime global (e .NET 11 nao serve p/
+app net8.0 — runtimes sao lado a lado; instalar o 11 nunca ia adiantar).
+CORRECAO: build-msix.ps1 agora fecha a lista sozinho (Mapping.gen.txt =
+Mapping do repo + tudo do PackageDir menos *.pdb/*.log), entao a closure vai
+completa por construcao. Pacote foi de 4,6 MB para 82 MB (tamanho normal de
+self-contained). Validado: unpack com hostfxr/hostpolicy + exe abre janela
+"kuaa Estudante" direto do PackageDir.
+TROPECOS NO CAMINHO (todos viraram fix permanente):
+- Copy-Item de diretorio sobre destino existente aninha assets\assets ->
+  copia agora e de conteudo ($src\*) com destino pre-criado.
+- Add-Content no Mapping.gen sem newline inicial grudava linhas -> gen agora
+  e montado em memoria e escrito de uma vez (UTF8 sem BOM).
+- signtool local NAO assina NENHUM .msix aqui (nem pacote minimo com manifesto
+  trivial; PE ele assina normal; testado kits 28000 e 26100 + 2 certs) ->
+  anomalia da maquina, fora do caminho critico: a loja assina na submissao.
+  Instalacao local p/ teste tambem bloqueada (sem modo dev/admin). Nao insistir.
+PRESUNCAO: pacotes seguem nao assinados p/ upload; .NET 11 SDK na maquina do
+usuario e desnecessario p/ o app (pode remover se quiser).
