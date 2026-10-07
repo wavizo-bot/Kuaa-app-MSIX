@@ -11,7 +11,7 @@ IDENTIDADE (igual ao cadastro do Partner Center — NAO TROCAR sem trocar la):
   PublisherDisplayName ............. wavizo
   PFN .............................. wavizo.Kuaa_c5p81jb0en0bm
   Store ID ......................... 9NR9N6L65XX8
-  Versao atual do manifesto ........ 1.3.7.0 (AppxManifest.xml + build-msix.ps1)
+  Versao atual do manifesto ........ 1.3.8.0 (AppxManifest.xml + build-msix.ps1)
 
 CONTEUDO:
   AppxManifest.xml ......... manifesto do pacote (identidade, tiles, capabilities)

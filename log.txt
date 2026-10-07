@@ -81,3 +81,10 @@ TROPECOS NO CAMINHO (todos viraram fix permanente):
   Instalacao local p/ teste tambem bloqueada (sem modo dev/admin). Nao insistir.
 PRESUNCAO: pacotes seguem nao assinados p/ upload; .NET 11 SDK na maquina do
 usuario e desnecessario p/ o app (pode remover se quiser).
+============================================================
+ETAPA 5 - BUMP 1.3.7.0 -> 1.3.8.0 (VERSAO QUEIMADA NA LOJA)  [FEITO - 07/10/2026]
+A loja recusou novo conteudo com nome completo 1.3.7.0 (versao publicada nao
+pode ser reutilizada, mesmo apagando o pacote da submissao). Subido para
+1.3.8.0 no manifesto + $PackageName + README + manual; exemplo manual do README
+corrigido p/ o comando /p+/f valido. Pacote regenerado (82 MB) e validado via
+unpack (Version + DisplayName Kuaa + hostfxr/hostpolicy).

@@ -21,7 +21,7 @@ $OutputDir = "$ProjectRoot\PackageOutput"
 $PackageDir = "$OutputDir\Package"
 $MappingFile = "$ProjectRoot\Mapping.txt"
 $ManifestFile = "$ProjectRoot\AppxManifest.xml"
-$PackageName = "wavizo.Kuaa_1.3.7.0_${Platform}.msix"
+$PackageName = "wavizo.Kuaa_1.3.8.0_${Platform}.msix"
 
 Write-Host "=== Building Kuaa-app MSIX Package ===" -ForegroundColor Green
 Write-Host "Configuration: $Configuration" -ForegroundColor Cyan
