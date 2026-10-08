@@ -99,3 +99,18 @@ CORRECAO (Host/Program.cs): userDataDir = LocalAppData\wavizo\Kuaa\EBWebView
 (criado via CreateDirectory; no container vira armazenamento privado).
 Validado: exe abre "kuaa Estudante" e a pasta EBWebView nasce no LocalAppData.
 BUMP junto (1.3.8.0 publicada -> 1.3.9.0 em manifesto+script+README+manual).
+============================================================
+ETAPA 7 - TELA BRANCA: SERVIDOR LOCALHOST NO HOST + BUMP 1.3.10.0  [FEITO]
+SINTOMA (loja, 1.3.9.0): janela abre com titulo certo mas pagina em branco.
+CAUSA: index.html usa caminhos absolutos (/assets/...) + ES modules, que nao
+funcionam sobre file:// (e quebram com espacos tipo "Program Files"). Na pasta
+de build o file:// ate navegava, mascarando o problema.
+CORRECAO (Host/Program.cs): HttpListener embutido (porta livre via TcpListener
+porta 0, prefixes 127.0.0.1+localhost, so loopback = sem prompt de firewall),
+MIME map completo (.js como text/javascript e critico p/ modules), fallback SPA
+(rotas sem extensao caem no index), trava anti path-traversal, desliga no
+OnFormClosing. WebView navega p/ http://127.0.0.1:porta/. Zero mudanca no web.
+VALIDADO: GET / -> 200 text/html; GET bundle .js -> 200 text/javascript;
+GET /404 -> index (fallback); manifest -> MIME certo. Dois apps ao mesmo tempo
+nao conflitam (porta dinamica).
+BUMP junto (publicada nao reutiliza): 1.3.9.0 -> 1.3.10.0.

@@ -10,7 +10,7 @@ This repository contains the essential files to build and submit the **kuaa Estu
 - **Package Family Name (PFN)**: `wavizo.Kuaa_c5p81jb0en0bm`
 - **Package SID**: `S-1-15-2-2300805751-4288129790-265490174-3265155858-4293854383-3716263767-745956416`
 - **Store ID**: `9NR9N6L65XX8`
-- **Version**: `1.3.9.0`
+- **Version**: `1.3.10.0`
 
 ## Structure
 
@@ -69,12 +69,12 @@ Kuaa-app/
 
 3. **Create MSIX with MakeAppx:**
    ```powershell
-   makeappx pack /p PackageOutput\wavizo.Kuaa_1.3.9.0_x64.msix /l /o /f Mapping.txt
+   makeappx pack /p PackageOutput\wavizo.Kuaa_1.3.10.0_x64.msix /l /o /f Mapping.txt
    ```
 
 4. **Sign the package (for Store):**
    ```powershell
-   signtool sign /fd SHA256 /f cert.pfx /p password PackageOutput\wavizo.Kuaa_1.3.9.0_x64.msix
+   signtool sign /fd SHA256 /f cert.pfx /p password PackageOutput\wavizo.Kuaa_1.3.10.0_x64.msix
    ```
 
 ## Microsoft Partner Center Submission
@@ -109,3 +109,4 @@ Kuaa-app/
 - **Kuaa-admin MSIX**: https://github.com/wavizo-bot/Kuaa-admin-MSIX.git
 - **Source (Student App)**: https://github.com/wavizo-bot/Kuaa-app
 - **Source (Admin Panel)**: https://github.com/wavizo-bot/Kuaa-admin
+
