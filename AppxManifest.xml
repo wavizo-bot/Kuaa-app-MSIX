@@ -18,7 +18,7 @@
          IgnorableNamespaces="uap3 uap4 uap5 uap6 uap7 uap8 uap9 uap10 uap11 uap12 uap13 uap14 rescap desktop4">
   <Identity Name="wavizo.Kuaa"
             Publisher="CN=57BB464E-553F-45B6-A4ED-B253157408EB"
-             Version="1.3.8.0" />
+             Version="1.3.9.0" />
   <Properties>
     <DisplayName>Kuaa</DisplayName>
     <PublisherDisplayName>wavizo</PublisherDisplayName>

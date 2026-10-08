@@ -88,3 +88,14 @@ pode ser reutilizada, mesmo apagando o pacote da submissao). Subido para
 1.3.8.0 no manifesto + $PackageName + README + manual; exemplo manual do README
 corrigido p/ o comando /p+/f valido. Pacote regenerado (82 MB) e validado via
 unpack (Version + DisplayName Kuaa + hostfxr/hostpolicy).
+============================================================
+ETAPA 6 - WEBVIEW2 USERDATA P/ LOCALAPPDATA + BUMP 1.3.9.0  [FEITO - 07/10/2026]
+SINTOMA (loja, 1.3.8.0 instalada): CO_E_SERVER_EXEC_FAILURE no
+InitCoreWebView2Async + print "Edge nao pode ler e gravar no diretorio de
+dados ...WindowsApps\...\WebView2Data". Causa: CreateAsync apontava p/
+_webRoot/WebView2Data e o install dir do MSIX e somente-leitura (fora do
+container, na pasta de build, funcionava — por isso passou batido).
+CORRECAO (Host/Program.cs): userDataDir = LocalAppData\wavizo\Kuaa\EBWebView
+(criado via CreateDirectory; no container vira armazenamento privado).
+Validado: exe abre "kuaa Estudante" e a pasta EBWebView nasce no LocalAppData.
+BUMP junto (1.3.8.0 publicada -> 1.3.9.0 em manifesto+script+README+manual).

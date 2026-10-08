@@ -42,7 +42,16 @@ namespace KuaaApp.Host
             };
             Controls.Add(_webView);
 
-            var env = await CoreWebView2Environment.CreateAsync(null, Path.Combine(_webRoot, "WebView2Data"));
+            // O diretorio de instalacao do MSIX e somente-leitura: os dados do
+            // WebView2 (cache, cookies, LocalStorage do app) ficam em LocalAppData,
+            // que dentro do container MSIX redireciona para o armazenamento
+            // privado do app. (Antes era _webRoot/WebView2Data e quebrava com
+            // CO_E_SERVER_EXEC_FAILURE na versao da loja.)
+            var userDataDir = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                "wavizo", "Kuaa", "EBWebView");
+            Directory.CreateDirectory(userDataDir);
+            var env = await CoreWebView2Environment.CreateAsync(null, userDataDir);
             await _webView.EnsureCoreWebView2Async(env);
 
             _webView.CoreWebView2.Settings.IsStatusBarEnabled = false;
