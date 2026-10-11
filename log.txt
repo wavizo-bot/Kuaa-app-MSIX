@@ -114,3 +114,8 @@ VALIDADO: GET / -> 200 text/html; GET bundle .js -> 200 text/javascript;
 GET /404 -> index (fallback); manifest -> MIME certo. Dois apps ao mesmo tempo
 nao conflitam (porta dinamica).
 BUMP junto (publicada nao reutiliza): 1.3.9.0 -> 1.3.10.0.
+============================================================
+ETAPA 7 - ACERVO ONLINE VIA KUAAREPO (MODAL IMPORTAR)  [FEITO 11/10/2026]
+ FONTE: sync do dist novo (modal Importar -> Repositorio, politica §4-A).
+ ORFAOS removidos do git: 4 bundles hashed antigos. Mapping regenerado.
+ SEM bump de versao (segue 1.3.10.0; bump quando for submeter).
