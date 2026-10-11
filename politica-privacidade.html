@@ -31,13 +31,14 @@
   <body>
     <main>
       <h1>Política de Privacidade</h1>
-      <p class="updated">Aplicativo <strong>kuaa Estudante</strong> — Última atualização: 6 de outubro de 2026</p>
+      <p class="updated">Aplicativo <strong>kuaa Estudante</strong> — Última atualização: 11 de outubro de 2026</p>
 
       <div class="highlight">
         <strong>Resumo em uma frase:</strong> o kuaa Estudante é um aplicativo educacional
         <strong>offline</strong>. Ele <strong>não coleta, não armazena em servidores, não envia e não
-        compartilha nenhum dado pessoal</strong> de quem usa. A comunicação é unidirecional: o conteúdo
-        vai do aplicativo para você — nada volta para nós.
+        compartilha nenhum dado pessoal</strong> de quem usa. A única exceção é quando você escolhe
+        baixar provas do repositório oficial (ver seção 4): nesse caso o app faz uma conexão de
+        leitura com o GitHub para trazer os arquivos — nenhum dado pessoal é enviado por nós.
       </div>
 
       <h2>1. Dados que o aplicativo coleta</h2>
@@ -48,10 +49,10 @@
       <h2>2. Permissões do dispositivo</h2>
       <p>No Android, o aplicativo solicita apenas duas permissões, e nenhuma delas lê dados pessoais:</p>
       <ul>
-        <li><strong>Internet</strong> — usada exclusivamente para carregar fontes tipográficas (ver seção 4) e, se houver atualização do próprio app pela loja.</li>
+        <li><strong>Internet</strong> — usada para carregar fontes tipográficas (ver seção 4), para baixar pacotes de provas do repositório oficial quando você escolhe essa opção na tela de importação (ver seção 4-A) e, se houver atualização do próprio app pela loja.</li>
         <li><strong>Vibrar</strong> — feedback tátil opcional de interface.</li>
       </ul>
-      <p>No Windows (versão da Microsoft Store), o aplicativo declara apenas a capacidade de <strong>rede (internetClient)</strong>, para o mesmo fim das fontes tipográficas; o retorno tátil é recurso de interface e não lê nenhum dado.</p>
+      <p>No Windows (versão da Microsoft Store), o aplicativo declara apenas a capacidade de <strong>rede (internetClient)</strong>, para os mesmos fins das fontes tipográficas e do acervo online (ver seção 4-A); o retorno tátil é recurso de interface e não lê nenhum dado.</p>
       <p>O app <strong>não acessa</strong>: câmera, microfone, contato, localização (GPS), armazenamento
       externo, histórico de navegação, lista de aplicativos instalados, notificações, sensor biométrico
       ou qualquer outro recurso do dispositivo.</p>
@@ -73,6 +74,30 @@
       <a href="https://policies.google.com/privacy?hl=pt-BR" rel="noopener">Política de Privacidade do Google</a>.
       Nenhum dado pessoal é transmitido a nós, e o app <strong>pode ser usado integralmente sem
       internet</strong>.</p>
+
+      <h2>4-A. Acervo online (download de provas do repositório oficial)</h2>
+      <p>Na tela inicial, o botão <strong>Importar</strong> abre um painel com duas opções:
+      <strong>Local</strong> (arquivos JSON já salvos no seu aparelho — nada sai do dispositivo) e
+      <strong>Repositório</strong> (pacotes de provas publicados por nós no repositório oficial
+      <strong>wavizo-bot/KuaaRepo</strong> no GitHub).</p>
+      <ul>
+        <li>A conexão com o GitHub acontece <strong>somente se e quando você escolher a opção
+        Repositório</strong> (ao abrir o painel e ao tocar em Baixar). Se você usar apenas a opção
+        Local, nenhuma conexão com o GitHub é feita.</li>
+        <li>O app baixa apenas dois tipos de arquivo público: o índice do acervo
+        (<strong>manifest.json</strong>, com nomes de pacotes e contagens de provas/questões) e os
+        pacotes JSON que você escolher. Os arquivos baixados são salvos <strong>apenas no seu
+        aparelho</strong> (mesmo armazenamento local da seção 3).</li>
+        <li>O app <strong>não envia nenhum dado pessoal</strong> nessas requisições: não há login,
+        conta, identificador ou telemetria — é uma leitura anônima de arquivos públicos. Ainda assim,
+        como em qualquer acesso à internet, o servidor do GitHub pode registrar dados técnicos da
+        conexão (como endereço IP), tratados conforme a
+        <a href="https://docs.github.com/pt/site-policy/privacy-policies/github-privacy-statement" rel="noopener">Declaração de Privacidade do GitHub</a>.</li>
+        <li>A verificação de novidades usa as datas públicas do índice
+        (<strong>geradoEm/atualizadoEm</strong>) comparadas com o registro local do que você já
+        baixou. Se o aparelho estiver offline, o painel mostra erro de conexão e nada muda no seu
+        acervo.</li>
+      </ul>
 
       <h2>5. Analytics, cookies e publicidade</h2>
       <ul>
@@ -110,7 +135,7 @@
 
       <h2>11. Contato</h2>
       <p>Em caso de dúvidas sobre esta política ou sobre o aplicativo, fale conosco pelo e-mail:
-      <strong>mmr05@hotmail.com</strong>.</p>
+      <strong>mmr05@hotmail.com</strong> ou pelo telefone <strong>11978831938</strong>.</p>
 
       <footer>
         kuaa Estudante — aplicativo educacional offline. Este documento atende aos requisitos de
