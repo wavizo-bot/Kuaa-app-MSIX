@@ -121,4 +121,7 @@ ETAPA 7 - ACERVO ONLINE VIA KUAAREPO (MODAL IMPORTAR)  [FEITO 11/10/2026]
  SEM bump de versao (segue 1.3.10.0; bump quando for submeter).============================================================
 ETAPA 8 - MODAL DE ACEITE + BUMP 1.3.11.0  [FEITO 11/10/2026]
  Modal bloqueante de Termos (3 abas) + termos/aviso HTML novos no pacote.
- Bump 1.3.10.0 -> 1.3.11.0 (manifesto+script+README+manual).
+ Bump 1.3.10.0 -> 1.3.11.0 (manifesto+script+README+manual).============================================================
+ETAPA 9 - BACKUP DRIVE + POPUP OAUTH + BUMP 1.3.12.0  [FEITO 12/10/2026]
+ Backup Google Drive (AppData, sem provas) + popup proprio (NewWindow).
+ Bump 1.3.11.0 -> 1.3.12.0.

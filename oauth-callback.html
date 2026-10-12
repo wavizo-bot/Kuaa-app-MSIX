@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>kuaa — conectando…</title>
+    <style>body{font-family:system-ui,sans-serif;display:grid;place-items:center;min-height:100vh;margin:0;background:#f6f8fa;color:#17324d}</style>
+  </head>
+  <body>
+    <p>Conectando ao Google Drive… pode fechar esta janela.</p>
+    <script>
+      // Retorno do OAuth (loopback, mesma origem do app): entrega o código
+      // via localStorage e fecha a janela. O app aguarda a chave abaixo.
+      (function () {
+        try {
+          var q = new URLSearchParams(window.location.search);
+          var code = q.get("code");
+          var err = q.get("error");
+          if (code) localStorage.setItem("kuaa-oauth-code", JSON.stringify({ code: code, at: Date.now() }));
+          else if (err) localStorage.setItem("kuaa-oauth-code", JSON.stringify({ error: err, at: Date.now() }));
+        } catch (e) { /* ignora */ }
+        window.close();
+      })();
+    </script>
+  </body>
+</html>

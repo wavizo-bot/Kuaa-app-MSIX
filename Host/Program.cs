@@ -25,6 +25,7 @@ namespace KuaaApp.Host
     {
         private WebView2 _webView;
         private string _webRoot;
+        private string _userDataDir;
         private HttpListener _localServer;
         private CancellationTokenSource _serverCts;
         private string _baseUrl;
@@ -161,8 +162,17 @@ namespace KuaaApp.Host
                 Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
                 "wavizo", "Kuaa", "EBWebView");
             Directory.CreateDirectory(userDataDir);
+            _userDataDir = userDataDir;
             var env = await CoreWebView2Environment.CreateAsync(null, userDataDir);
             await _webView.EnsureCoreWebView2Async(env);
+
+            // Janela própria (ex.: login Google): abre popup em vez de navegar
+            // o app. Mesmo perfil = mesma origem/localStorage do app.
+            _webView.CoreWebView2.NewWindowRequested += (sender, args) =>
+            {
+                args.Handled = true;
+                ShowPopup(args.Uri);
+            };
 
             _webView.CoreWebView2.Settings.IsStatusBarEnabled = false;
             _webView.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
@@ -177,6 +187,32 @@ namespace KuaaApp.Host
                     _webView.CoreWebView2.Navigate(_baseUrl + "/index.html");
                 }
             };
+        }
+
+        private void ShowPopup(string url)
+        {
+            var form = new Form
+            {
+                Text = "kuaa",
+                Width = 520,
+                Height = 700,
+                StartPosition = FormStartPosition.CenterParent,
+                MinimizeBox = false,
+                MaximizeBox = false
+            };
+            var popup = new WebView2 { Dock = DockStyle.Fill };
+            form.Controls.Add(popup);
+            form.Shown += async (_, __) =>
+            {
+                try
+                {
+                    var env = await CoreWebView2Environment.CreateAsync(null, _userDataDir);
+                    await popup.EnsureCoreWebView2Async(env);
+                    popup.CoreWebView2.Navigate(url);
+                }
+                catch { form.Close(); }
+            };
+            form.Show(this);
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
